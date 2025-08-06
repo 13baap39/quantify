@@ -88,7 +88,7 @@ Quantify/
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/13baap39/quantify.git
 cd quantify
 
 # Start everything (backend + frontend + database check)
