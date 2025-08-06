@@ -11,6 +11,8 @@ const SignupPage = () => {
     confirmPassword: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { signup, error, clearError, currentUser } = useAuth();
   const navigate = useNavigate();
@@ -22,10 +24,21 @@ const SignupPage = () => {
     }
   }, [currentUser, navigate]);
 
-  // Clear errors when form changes
+  // Clear errors only when component mounts (not on form changes)
   useEffect(() => {
     clearError();
-  }, [formData, clearError]);
+  }, [clearError]);
+
+  // Auto-dismiss error after 10 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        clearError();
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [error, clearError]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -108,11 +121,32 @@ const SignupPage = () => {
             border: '1px solid #fecaca',
             borderRadius: '0.5rem',
             padding: '0.75rem',
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            position: 'relative'
           }}>
-            <p style={{ color: '#dc2626', fontSize: '0.875rem', margin: 0 }}>
+            <p style={{ color: '#dc2626', fontSize: '0.875rem', margin: 0, paddingRight: '2rem' }}>
               {error}
             </p>
+            <button
+              type="button"
+              onClick={clearError}
+              style={{
+                position: 'absolute',
+                top: '0.5rem',
+                right: '0.5rem',
+                background: 'none',
+                border: 'none',
+                color: '#dc2626',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                padding: '0.25rem',
+                lineHeight: 1
+              }}
+              title="Dismiss error"
+            >
+              ×
+            </button>
           </div>
         )}
 
@@ -233,25 +267,46 @@ const SignupPage = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-              disabled={isLoading}
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.5rem',
-                fontSize: '1rem',
-                outline: 'none',
-                opacity: isLoading ? 0.6 : 1
-              }}
-              placeholder="At least 6 characters"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+                disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  paddingRight: '3rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '0.5rem',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  opacity: isLoading ? 0.6 : 1
+                }}
+                placeholder="At least 6 characters"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6b7280',
+                  fontSize: '0.875rem',
+                  padding: '0.25rem'
+                }}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <div style={{ marginBottom: '2rem' }}>
@@ -266,25 +321,46 @@ const SignupPage = () => {
             >
               Confirm Password
             </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              required
-              disabled={isLoading}
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.5rem',
-                fontSize: '1rem',
-                outline: 'none',
-                opacity: isLoading ? 0.6 : 1
-              }}
-              placeholder="Confirm your password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                required
+                disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  paddingRight: '3rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '0.5rem',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  opacity: isLoading ? 0.6 : 1
+                }}
+                placeholder="Confirm your password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6b7280',
+                  fontSize: '0.875rem',
+                  padding: '0.25rem'
+                }}
+              >
+                {showConfirmPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <button

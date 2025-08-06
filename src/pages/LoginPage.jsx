@@ -11,6 +11,8 @@ const LoginPage = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetMessage, setResetMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [localError, setLocalError] = useState(''); // Local error state for better control
 
   const { signin, resetPassword, error, clearError, currentUser } = useAuth();
   const navigate = useNavigate();
@@ -24,10 +26,28 @@ const LoginPage = () => {
     }
   }, [currentUser, navigate, location]);
 
-  // Clear errors when component mounts or form changes
+  // Clear errors only when component mounts (not on form changes)
   useEffect(() => {
     clearError();
-  }, [formData, clearError]);
+  }, [clearError]);
+
+  // Auto-dismiss error after 10 seconds
+  useEffect(() => {
+    if (error && !localError) {
+      setLocalError(error); // Copy error to local state
+    }
+  }, [error, localError]);
+
+  // Auto-dismiss local error after 10 seconds
+  useEffect(() => {
+    if (localError) {
+      const timer = setTimeout(() => {
+        setLocalError('');
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [localError]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -43,6 +63,9 @@ const LoginPage = () => {
       return;
     }
 
+    // Clear local error when attempting new login
+    setLocalError('');
+    
     try {
       setIsLoading(true);
       await signin(formData.email, formData.password);
@@ -52,6 +75,7 @@ const LoginPage = () => {
       navigate(from, { replace: true });
     } catch (error) {
       console.error('Login error:', error);
+      // Error will be captured by useEffect and shown via localError
     } finally {
       setIsLoading(false);
     }
@@ -66,11 +90,16 @@ const LoginPage = () => {
 
     try {
       await resetPassword(resetEmail);
-      setResetMessage('Password reset email sent! Check your inbox.');
+      // Always show the same message for security (don't reveal if email exists)
+      setResetMessage('If your email is in our system, you\'ll get a reset link.');
       setShowForgotPassword(false);
       setResetEmail('');
     } catch (error) {
       console.error('Password reset error:', error);
+      // Even on error, show the same neutral message for security
+      setResetMessage('If your email is in our system, you\'ll get a reset link.');
+      setShowForgotPassword(false);
+      setResetEmail('');
     }
   };
 
@@ -230,17 +259,38 @@ const LoginPage = () => {
           </div>
         )}
 
-        {error && (
+        {localError && (
           <div style={{
             backgroundColor: '#fef2f2',
             border: '1px solid #fecaca',
             borderRadius: '0.5rem',
             padding: '0.75rem',
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            position: 'relative'
           }}>
-            <p style={{ color: '#dc2626', fontSize: '0.875rem', margin: 0 }}>
-              {error}
+            <p style={{ color: '#dc2626', fontSize: '0.875rem', margin: 0, paddingRight: '2rem' }}>
+              {localError}
             </p>
+            <button
+              type="button"
+              onClick={() => setLocalError('')}
+              style={{
+                position: 'absolute',
+                top: '0.5rem',
+                right: '0.5rem',
+                background: 'none',
+                border: 'none',
+                color: '#dc2626',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                padding: '0.25rem',
+                lineHeight: 1
+              }}
+              title="Dismiss error"
+            >
+              ×
+            </button>
           </div>
         )}
 
@@ -291,25 +341,46 @@ const LoginPage = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-              disabled={isLoading}
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.5rem',
-                fontSize: '1rem',
-                outline: 'none',
-                opacity: isLoading ? 0.6 : 1
-              }}
-              placeholder="Enter your password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+                disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  paddingRight: '3rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '0.5rem',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  opacity: isLoading ? 0.6 : 1
+                }}
+                placeholder="Enter your password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6b7280',
+                  fontSize: '0.875rem',
+                  padding: '0.25rem'
+                }}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <div style={{ textAlign: 'right', marginBottom: '2rem' }}>
