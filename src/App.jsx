@@ -1,12 +1,13 @@
 import React from 'react'
-import LandingPage from './pages/LandingPage'
+import { AuthProvider } from './contexts/AuthContext'
+import AppRouter from './components/AppRouter'
 import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <LandingPage />
-    </div>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   )
 }
 

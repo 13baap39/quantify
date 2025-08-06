@@ -1,0 +1,270 @@
+/* Stock Table Styles */
+
+.stock-table-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.stock-table th,
+.stock-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.stock-table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.stock-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.stock-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Row status indicators */
+.table-row.out-of-stock {
+  background-color: #fef2f2;
+}
+
+.table-row.low-stock {
+  background-color: #fffbeb;
+}
+
+.table-row.in-stock {
+  background-color: #f0fdf4;
+}
+
+.table-row.out-of-stock:hover {
+  background-color: #fee2e2;
+}
+
+.table-row.low-stock:hover {
+  background-color: #fef3c7;
+}
+
+.table-row.in-stock:hover {
+  background-color: #dcfce7;
+}
+
+/* Cell content styling */
+.sku-code {
+  font-family: 'Courier New', monospace;
+  background-color: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.category-tag {
+  background-color: #e0e7ff;
+  color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.quantity-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.quantity-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.quantity-unit {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.status-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.in-stock {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status-badge.low-stock {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.out-of-stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.date-text {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* Action controls */
+.action-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity-input {
+  width: 70px;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.quantity-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* Empty state */
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stock-table th,
+  .stock-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .quantity-controls {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: stretch;
+  }
+
+  .quantity-input {
+    width: 60px;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .product-name {
+    font-size: 0.875rem;
+  }
+
+  .quantity-value {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stock-table {
+    font-size: 0.8rem;
+  }
+
+  .stock-table th,
+  .stock-table td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .quantity-input {
+    width: 50px;
+    font-size: 0.75rem;
+  }
+
+  .action-buttons .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .sku-code {
+    font-size: 0.75rem;
+  }
+
+  .category-tag {
+    font-size: 0.625rem;
+  }
+
+  .status-badge {
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
+  }
+}

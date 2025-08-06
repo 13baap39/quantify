@@ -25,10 +25,20 @@
   margin: 0;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header-nav {
   display: flex;
   align-items: center;
   gap: 2rem;
+  position: relative;
+}
+
+.user-menu-container {
+  position: relative;
 }
 
 .nav-link {

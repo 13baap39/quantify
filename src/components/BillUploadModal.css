@@ -1,0 +1,274 @@
+/* Bill Upload Modal Styles */
+
+.bill-upload-modal {
+  max-width: 700px;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.upload-info {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #2563eb;
+}
+
+.upload-info p {
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.upload-info ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #64748b;
+}
+
+.upload-info li {
+  margin-bottom: 0.5rem;
+}
+
+/* Upload Zone */
+.upload-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.upload-zone:hover {
+  border-color: #2563eb;
+  background-color: #f1f5f9;
+}
+
+.upload-zone.dragging {
+  border-color: #2563eb;
+  background-color: #dbeafe;
+  transform: scale(1.02);
+}
+
+.upload-content {
+  pointer-events: none;
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.upload-zone h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.upload-zone p {
+  color: #64748b;
+  margin: 0;
+}
+
+.hidden-input {
+  display: none;
+}
+
+/* File Preview */
+.file-preview {
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+}
+
+.file-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.file-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file-icon {
+  font-size: 2rem;
+}
+
+.file-meta h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.file-meta p {
+  color: #64748b;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.remove-file {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.remove-file:hover {
+  background: #dc2626;
+}
+
+.image-preview {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.processing-info {
+  margin-top: 1.5rem;
+}
+
+.info-box {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
+}
+
+.info-box h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.info-box ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #1e40af;
+}
+
+.info-box li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Loading Spinner */
+.loading-spinner.small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bill-upload-modal {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .upload-zone {
+    padding: 2rem 1rem;
+  }
+
+  .upload-icon {
+    font-size: 3rem;
+  }
+
+  .upload-zone h3 {
+    font-size: 1.125rem;
+  }
+
+  .file-details {
+    gap: 0.75rem;
+  }
+
+  .file-icon {
+    font-size: 1.5rem;
+  }
+
+  .file-meta h4 {
+    font-size: 0.9rem;
+  }
+
+  .file-meta p {
+    font-size: 0.8rem;
+  }
+
+  .image-preview img {
+    max-height: 200px;
+  }
+
+  .info-box {
+    padding: 1rem;
+  }
+
+  .info-box h4 {
+    font-size: 0.9rem;
+  }
+
+  .info-box li {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-zone {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .upload-icon {
+    font-size: 2.5rem;
+  }
+
+  .upload-zone h3 {
+    font-size: 1rem;
+  }
+
+  .upload-zone p {
+    font-size: 0.875rem;
+  }
+
+  .file-info {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .remove-file {
+    align-self: flex-end;
+  }
+}

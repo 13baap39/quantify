@@ -5,9 +5,10 @@ A modern React web application built with Vite for streamlined stock management 
 ## Features
 
 - **Modern Landing Page** - Clean, responsive design with modern color scheme
+- **User Authentication** - Firebase-powered login/signup with email/password
+- **Protected Routes** - Secure access to authenticated user areas
 - **Dashboard** - Real-time overview of inventory metrics and KPIs
 - **Stock Management** - Comprehensive inventory tracking and management
-- **Login System** - User authentication (placeholder for future implementation)
 - **Analytics** - Data visualization and insights (placeholder for future implementation)
 
 ## Project Structure
@@ -16,16 +17,23 @@ A modern React web application built with Vite for streamlined stock management 
 src/
 ├── components/          # Reusable React components
 │   ├── Button.jsx      # Custom button component
-│   └── Button.css      # Button component styles
+│   ├── Header.jsx      # Navigation header with auth
+│   ├── ProtectedRoute.jsx # Route protection wrapper
+│   └── AppRouter.jsx   # Main routing configuration
 ├── pages/              # Page-level components
 │   ├── LandingPage.jsx # Main landing page
-│   ├── LoginPage.jsx   # Login page placeholder
+│   ├── LoginPage.jsx   # User login with Firebase auth
+│   ├── SignupPage.jsx  # User registration
 │   ├── DashboardPage.jsx # Dashboard with metrics
 │   └── StockManagementPage.jsx # Stock management interface
+├── contexts/           # React contexts
+│   └── AuthContext.jsx # Authentication state management
+├── config/             # Configuration files
+│   └── firebase.js     # Firebase configuration
 ├── utils/              # Utility functions
 │   └── helpers.js      # Common helper functions
 ├── assets/             # Static assets
-├── App.jsx            # Main app component
+├── App.jsx            # Main app component with auth provider
 ├── App.css            # App-specific styles
 ├── main.jsx           # Application entry point
 └── index.css          # Global styles and CSS variables
@@ -51,12 +59,17 @@ src/
    npm install
    ```
 
-3. Start the development server:
+3. Set up Firebase Authentication:
+   - Follow the detailed guide in `FIREBASE_SETUP.md`
+   - Copy `.env.example` to `.env` and add your Firebase configuration
+   - Or use the demo mode for development (no setup required)
+
+4. Start the development server:
    ```bash
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## Available Scripts
 
@@ -67,9 +80,12 @@ src/
 
 ## Technology Stack
 
-- **React** - Frontend framework
+- **React** - Frontend framework with hooks and context
 - **Vite** - Build tool and development server
+- **Firebase** - Authentication and backend services
+- **React Router** - Client-side routing and navigation
 - **CSS3** - Modern styling with CSS variables
+- **Tailwind CSS** - Utility-first CSS framework
 - **ESLint** - Code linting and formatting
 
 ## Color Scheme

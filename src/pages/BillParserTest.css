@@ -1,0 +1,419 @@
+/* Bill Parser Test Styles */
+
+.bill-parser-test {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.test-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+}
+
+.test-header {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.test-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.test-header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.test-content {
+  padding: 2rem;
+}
+
+.test-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.test-section:last-child {
+  margin-bottom: 0;
+}
+
+.test-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+/* Upload Area */
+.upload-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.file-input {
+  padding: 1rem;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.file-input:hover {
+  border-color: #2563eb;
+}
+
+.file-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.selected-file p {
+  margin: 0.5rem 0;
+  color: #1e293b;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background-color: #64748b;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
+  transform: translateY(-2px);
+}
+
+/* Progress */
+.progress-info {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Error Section */
+.error-section {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.error-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+/* Results Section */
+.results-section {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.result-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.result-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.result-card ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.result-card li {
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+/* Items List */
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.raw-item {
+  background: #fffbeb;
+  border-color: #fed7aa;
+}
+
+.validated-item {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.item-sku {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.item-qty {
+  font-size: 0.875rem;
+  color: #059669;
+  font-weight: 500;
+}
+
+.item-price {
+  font-size: 0.875rem;
+  color: #0369a1;
+  font-weight: 500;
+}
+
+.no-items {
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+  margin: 0;
+}
+
+/* JSON Output */
+.json-output {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.json-output h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.json-content {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #374151;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 400px;
+  margin: 0;
+}
+
+/* Instructions */
+.instructions-section {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.instruction-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.instruction-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.instruction-card ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.instruction-card li {
+  margin-bottom: 0.5rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bill-parser-test {
+    padding: 1rem;
+  }
+
+  .test-header {
+    padding: 2rem 1rem;
+  }
+
+  .test-header h1 {
+    font-size: 2rem;
+  }
+
+  .test-content {
+    padding: 1rem;
+  }
+
+  .test-section {
+    padding: 1.5rem;
+  }
+
+  .upload-area {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .instructions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .item-sku {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .test-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .test-section {
+    padding: 1rem;
+  }
+
+  .result-card {
+    padding: 1rem;
+  }
+
+  .instruction-card {
+    padding: 1rem;
+  }
+}

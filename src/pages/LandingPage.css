@@ -40,45 +40,6 @@ body {
   padding: 0 1rem;
 }
 
-/* Header */
-.header {
-  background-color: var(--white);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-
-.logo h1 {
-  color: var(--primary-color);
-  font-size: 1.875rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-}
-
-.nav-btn {
-  background-color: var(--primary-color);
-  color: var(--white);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.nav-btn:hover {
-  background-color: var(--primary-dark);
-}
-
 /* Main Content */
 .main {
   flex: 1;
