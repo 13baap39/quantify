@@ -1,92 +1,190 @@
-# Quantify - Stock Management Web App
+# Quantify - Full-Stack Stock Management System
 
-A modern React web application built with Vite for streamlined stock management and inventory tracking.
+A modern full-stack web application for comprehensive stock management and inventory tracking with MongoDB backend, bill parsing, and real-time updates.
 
-## Features
+## 🚀 Features
 
-- **Modern Landing Page** - Clean, responsive design with modern color scheme
-- **User Authentication** - Firebase-powered login/signup with email/password
-- **Protected Routes** - Secure access to authenticated user areas
-- **Dashboard** - Real-time overview of inventory metrics and KPIs
-- **Stock Management** - Comprehensive inventory tracking and management
-- **Analytics** - Data visualization and insights (placeholder for future implementation)
+- **🏠 Modern Landing Page** - Clean, responsive design with modern color scheme
+- **🔐 User Authentication** - Firebase-powered login/signup with email/password
+- **🛡️ Protected Routes** - Secure access to authenticated user areas
+- **📊 Real-time Dashboard** - Live inventory metrics and KPIs from MongoDB
+- **📦 Complete Stock Management** - Full CRUD operations with backend API
+- **📄 Bill Processing** - OCR-powered PDF/Image bill parsing with batch updates
+- **🔍 Advanced Filtering** - Search, sort, and filter stock by multiple criteria
+- **⚡ Batch Operations** - Process multiple stock updates simultaneously
+- **📱 Responsive Design** - Mobile-first approach with Tailwind CSS
 
-## Project Structure
+## 🏗️ Architecture
+
+### Frontend
+- **React 19** with hooks and context
+- **Vite** for fast development and building
+- **Firebase Auth** for user authentication
+- **Tailwind CSS** for modern styling
+- **Axios** for API communication
+- **Tesseract.js** for OCR processing
+- **PDF.js** for PDF text extraction
+
+### Backend
+- **Node.js + Express** REST API
+- **MongoDB + Mongoose** for data persistence
+- **Express Validator** for input validation
+- **CORS + Helmet** for security
+- **Compression** for performance
+
+## 📁 Project Structure
 
 ```
-src/
-├── components/          # Reusable React components
-│   ├── Button.jsx      # Custom button component
-│   ├── Header.jsx      # Navigation header with auth
-│   ├── ProtectedRoute.jsx # Route protection wrapper
-│   └── AppRouter.jsx   # Main routing configuration
-├── pages/              # Page-level components
-│   ├── LandingPage.jsx # Main landing page
-│   ├── LoginPage.jsx   # User login with Firebase auth
-│   ├── SignupPage.jsx  # User registration
-│   ├── DashboardPage.jsx # Dashboard with metrics
-│   └── StockManagementPage.jsx # Stock management interface
-├── contexts/           # React contexts
-│   └── AuthContext.jsx # Authentication state management
-├── config/             # Configuration files
-│   └── firebase.js     # Firebase configuration
-├── utils/              # Utility functions
-│   └── helpers.js      # Common helper functions
-├── assets/             # Static assets
-├── App.jsx            # Main app component with auth provider
-├── App.css            # App-specific styles
-├── main.jsx           # Application entry point
-└── index.css          # Global styles and CSS variables
+Quantify/
+├── backend/                    # Node.js + Express Backend
+│   ├── config/
+│   │   └── database.js        # MongoDB connection
+│   ├── models/
+│   │   └── Stock.js          # Stock schema with validation
+│   ├── routes/
+│   │   └── stocks.js         # REST API endpoints
+│   ├── middleware/
+│   │   └── errorHandler.js   # Error handling
+│   ├── scripts/
+│   │   └── seedDatabase.js   # Sample data seeder
+│   └── server.js            # Main server file
+├── src/                        # React Frontend
+│   ├── components/            # Reusable React components
+│   │   ├── AppRouter.jsx     # Main routing configuration
+│   │   ├── BillParser.jsx    # OCR bill processing
+│   │   ├── StockTable.jsx    # Stock data table
+│   │   ├── Navbar.jsx        # Navigation component
+│   │   └── ProtectedRoute.jsx # Route protection wrapper
+│   ├── pages/                # Page-level components
+│   │   ├── LandingPage.jsx   # Main landing page
+│   │   ├── LoginPage.jsx     # Firebase authentication
+│   │   ├── DashboardPage.jsx # Dashboard with metrics
+│   │   ├── StockDashboard.jsx # Local stock management
+│   │   └── StockDashboardAPI.jsx # Backend-integrated dashboard
+│   ├── services/
+│   │   └── api.js           # Axios API client
+│   ├── contexts/
+│   │   └── AuthContext.jsx  # Authentication state
+│   ├── config/
+│   │   └── firebase.js      # Firebase configuration
+│   └── utils/
+│       └── billParser.js    # OCR processing utilities
+├── BACKEND_INTEGRATION.md     # Backend setup guide
+├── DEV_SCRIPTS.md            # Development workflow
+├── FIREBASE_SETUP.md         # Firebase configuration guide
+├── start.sh                  # One-command dev startup
+└── stop.sh                   # Graceful shutdown
 ```
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
+- Node.js (version 16 or higher)
+- MongoDB (local or cloud)
 - npm or yarn
 
-### Installation
+### One-Command Setup
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd quantify
-   ```
+```bash
+# Clone the repository
+git clone <repository-url>
+cd quantify
 
-2. Install dependencies:
+# Start everything (backend + frontend + database check)
+./start.sh
+```
+
+This will automatically:
+- ✅ Install all dependencies (frontend + backend)
+- ✅ Check MongoDB connection
+- ✅ Start backend server on port 5001
+- ✅ Start frontend server on port 5173
+- ✅ Create log files for debugging
+
+### Manual Setup
+
+1. **Backend Setup**:
    ```bash
+   cd backend
    npm install
+   npm run seed    # Add sample data
+   npm run dev     # Start backend server
    ```
 
-3. Set up Firebase Authentication:
-   - Follow the detailed guide in `FIREBASE_SETUP.md`
-   - Copy `.env.example` to `.env` and add your Firebase configuration
-   - Or use the demo mode for development (no setup required)
-
-4. Start the development server:
+2. **Frontend Setup**:
    ```bash
-   npm run dev
+   npm install     # Install frontend dependencies
+   npm run dev     # Start React development server
    ```
 
-5. Open your browser and navigate to `http://localhost:5173`
+3. **Environment Configuration**:
+   ```bash
+   # Backend environment (backend/.env)
+   MONGODB_URI=mongodb://localhost:27017/quantify
+   PORT=5001
+   
+   # Frontend environment (.env)
+   VITE_API_BASE_URL=http://localhost:5001/api
+   ```
+
+### Access the Application
+
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **Backend API**: [http://localhost:5001/api](http://localhost:5001/api)
+- **Stock Dashboard**: [http://localhost:5173/stock-api](http://localhost:5173/stock-api)
+- **Health Check**: [http://localhost:5001/health](http://localhost:5001/health)
+
+## 📋 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/stocks` | Get all stocks with filtering/pagination |
+| `GET` | `/api/stocks/:sku` | Get single stock by SKU |
+| `POST` | `/api/stocks` | Create new stock item |
+| `PUT` | `/api/stocks/:sku` | Update stock quantity and details |
+| `PATCH` | `/api/stocks/batch` | Batch update multiple SKUs |
+| `DELETE` | `/api/stocks/:sku` | Delete stock item |
+| `GET` | `/health` | API health check |
+
+## 📄 Bill Processing
+
+The system supports automatic bill parsing:
+
+1. **Upload** PDF or image files
+2. **OCR Processing** extracts text using Tesseract.js
+3. **Smart Parsing** identifies SKUs and quantities
+4. **Batch Updates** sends PATCH request to update multiple stocks
+5. **Real-time Feedback** shows successful/failed/not-found items
 
 ## Available Scripts
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the app for production
-- `npm run preview` - Preview the production build
-- `npm run lint` - Run ESLint to check code quality
+### Frontend
+- `npm run dev` - Start React development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Backend
+- `npm run dev` - Start Express server with nodemon
+- `npm run seed` - Populate database with sample data
+- `npm start` - Start production server
+
+### Development
+- `./start.sh` - Start both servers + MongoDB check
+- `./stop.sh` - Stop all running servers
 
 ## Technology Stack
 
-- **React** - Frontend framework with hooks and context
-- **Vite** - Build tool and development server
-- **Firebase** - Authentication and backend services
-- **React Router** - Client-side routing and navigation
-- **CSS3** - Modern styling with CSS variables
-- **Tailwind CSS** - Utility-first CSS framework
-- **ESLint** - Code linting and formatting
+- **React 19** - Frontend framework with hooks and context
+- **Vite 7** - Build tool and development server
+- **Node.js + Express** - Backend REST API
+- **MongoDB + Mongoose** - Database and ODM
+- **Firebase Auth** - User authentication
+- **Tailwind CSS** - Utility-first styling
+- **Axios** - HTTP client for API calls
+- **Tesseract.js** - OCR for bill processing
+- **PDF.js** - PDF text extraction
 
 ## Color Scheme
 
