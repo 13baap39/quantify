@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  // Set page title
+  useEffect(() => {
+    document.title = 'Quantify - Stock Management System';
+  }, []);
 
   const handleGetStarted = () => {
     navigate('/dashboard');

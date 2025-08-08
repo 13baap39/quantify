@@ -17,6 +17,11 @@ const SignupPage = () => {
   const { signup, error, clearError, currentUser } = useAuth();
   const navigate = useNavigate();
 
+  // Set page title
+  useEffect(() => {
+    document.title = 'Sign Up - Quantify';
+  }, []);
+
   // Redirect if already authenticated
   useEffect(() => {
     if (currentUser) {

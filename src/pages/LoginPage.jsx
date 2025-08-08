@@ -18,6 +18,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Set page title
+  useEffect(() => {
+    document.title = showForgotPassword ? 'Reset Password - Quantify' : 'Login - Quantify';
+  }, [showForgotPassword]);
+
   // Redirect if already authenticated
   useEffect(() => {
     if (currentUser) {
