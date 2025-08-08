@@ -108,10 +108,15 @@ const SignupPage = () => {
       }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <h1 style={{ color: '#2563eb', marginBottom: '0.5rem' }}>Quantify</h1>
+          <Link to="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            <img 
+              src="/quantify-logo.svg" 
+              alt="Quantify Logo" 
+              style={{ width: '40px', height: '40px' }}
+            />
+            <h1 style={{ color: '#2563eb', marginBottom: '0' }}>Quantify</h1>
           </Link>
-          <h2 style={{ color: '#1e293b', fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+          <h2 style={{ color: '#1e293b', fontSize: '1.5rem', marginBottom: '0.5rem', marginTop: '1rem' }}>
             Create Your Account
           </h2>
           <p style={{ color: '#64748b' }}>

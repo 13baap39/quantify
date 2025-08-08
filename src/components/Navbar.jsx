@@ -69,6 +69,11 @@ const Navbar = () => {
         <div className="navbar-container">
           <div className="navbar-brand">
             <Link to="/" className="brand-link">
+              <img 
+                src="/quantify-logo.svg" 
+                alt="Quantify Logo" 
+                className="brand-logo"
+              />
               <h1>Quantify</h1>
             </Link>
           </div>
@@ -91,6 +96,11 @@ const Navbar = () => {
               className="brand-link"
               onClick={closeMobileMenu}
             >
+              <img 
+                src="/quantify-logo.svg" 
+                alt="Quantify Logo" 
+                className="brand-logo"
+              />
               <h1>Quantify</h1>
             </Link>
           </div>
